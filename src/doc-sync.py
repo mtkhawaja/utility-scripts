@@ -1,6 +1,6 @@
 import argparse, sys
 import re
-from os import path
+from os import path, getcwd
 from decouple import config
 
 
@@ -18,7 +18,9 @@ try:
         raise FileNotFoundError()
 except FileNotFoundError:
     print('FileNotFoundError: Path to specified source file invalid or source file does not exist!')
+    print(f'Current Working Directory: {getcwd()}')
     print(f'Source File Path provided: {src_path}')
+    print(f'Target File Path provided: {tgt_path}')
     sys.exit(1)
 
 src_file = open(src_path, 'r')
@@ -28,7 +30,7 @@ tgt_file = open(tgt_path, 'w')
 reg_ex = "=\s*.*(?=')'"
 
 for line in src_file.readlines():
-    stripped_contents = re.sub(reg_ex, "''", line)
+    stripped_contents = re.sub(reg_ex, "= ''", line)
     tgt_file.write(stripped_contents)
 
 
