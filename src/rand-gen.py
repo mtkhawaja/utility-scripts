@@ -1,6 +1,5 @@
 import argparse, sys
 from decouple import config
-from requests import get
 from jsonrpcclient import request
 
 API_KEY = config('RANDOM_API_KEY')
