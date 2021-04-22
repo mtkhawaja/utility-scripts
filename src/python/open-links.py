@@ -1,11 +1,12 @@
 from argparse import ArgumentParser
 from sys import exit
 from os import path
-import webbrowser 
+import webbrowser
+
 
 def main(args):
     if not path.exists(args.file_path):
-        print('File does not exist!')
+        print("File does not exist!")
         return -1
 
     with open(args.file_path) as url_file:
@@ -15,9 +16,11 @@ def main(args):
 
 
 parser = ArgumentParser()
-parser.add_argument('-f', '--file_path', required = True, help = 'Path to file with links', type=str)
+parser.add_argument(
+    "-f", "--file_path", required=True, help="Path to file with links", type=str
+)
 parser.set_defaults(func=main)
 args = parser.parse_args()
-return_code = args.func(args) 
+return_code = args.func(args)
 
 exit(return_code)
